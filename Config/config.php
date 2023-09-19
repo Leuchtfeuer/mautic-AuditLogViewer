@@ -32,7 +32,7 @@ return [
                             ]
                         ]
                     ],
-                    'priority'      => 20,
+                    'priority'      => -10,
             ]
         ]
     ],
@@ -61,10 +61,5 @@ return [
                 ],
             ],
         ],
-        'models'    => [
-            'mautic.log.model.auditlog' => [
-                'class' => \MauticPlugin\LeuchtfeuerLogBundle\Model\LogModel::class,
-            ]
-        ]
-    ]
+    ],
 ];

@@ -11,34 +11,11 @@ use Mautic\CoreBundle\Translation\Translator;
 use Mautic\CoreBundle\Helper\UserHelper;
 use Psr\Log\LoggerInterface;
 use Mautic\CoreBundle\Helper\CoreParametersHelper;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 
 class LogModel extends AbstractCommonModel
 {
-    /**
-     * @param EntityManagerInterface $em
-     * @param CorePermissions $security
-     * @param EventDispatcherInterface $dispatcher
-     * @param UrlGeneratorInterface $router
-     * @param Translator $translator
-     * @param UserHelper $userHelper
-     * @param LoggerInterface $mauticLogger
-     * @param CoreParametersHelper $coreParametersHelper
-     */
-    public function __construct(
-        EntityManagerInterface $em,
-        CorePermissions $security,
-        EventDispatcherInterface $dispatcher,
-        UrlGeneratorInterface $router,
-        TranslatorInterface $translator,
-        UserHelper $userHelper,
-        LoggerInterface $mauticLogger,
-        CoreParametersHelper $coreParametersHelper
-    ) {
-        parent::__construct($em, $security, $dispatcher, $router, $translator, $userHelper, $mauticLogger, $coreParametersHelper);
-        // Initialize any additional dependencies or perform other setup if needed
-    }
-
     /**
      * {@inheritdoc}
      *
