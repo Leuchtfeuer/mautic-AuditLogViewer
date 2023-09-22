@@ -19,7 +19,7 @@ class LogFilterType extends AbstractType
                 'attr'          => [
                     'class'      => 'form-control',
                     'placeholder'=> 'Search by name',
-                ]
+                ],
             ])
             ->add('action', ChoiceType::class, [
                 'choices'   => [
@@ -36,7 +36,7 @@ class LogFilterType extends AbstractType
                     'class' => 'form-control',
                     'name'  => 'filterForm[actionBundle]',
                 ],
-                'placeholder'   => 'Select an action'
+                'placeholder'   => 'Select an action',
             ])
             ->add('bundle', ChoiceType::class, [
                 'choices'   => [
@@ -49,7 +49,7 @@ class LogFilterType extends AbstractType
                 'multiple'      => true,
                 'attr'          => [
                     'class' => 'form-control',
-                ]
+                ],
             ])
             ->add('object', ChoiceType::class, [
                 'choices'   => [
@@ -63,7 +63,7 @@ class LogFilterType extends AbstractType
                 'multiple'      => true,
                 'attr'          => [
                     'class' => 'form-control',
-                ]
+                ],
             ])
             ->add('timePeriodStart', DateType::class, [
                 'widget'    => 'single_text',
@@ -75,10 +75,7 @@ class LogFilterType extends AbstractType
             ])
             ->add('submit', SubmitType::class, [
                 'label'     => 'Submit filters',
-                // 'attr'      => [
-                //     'class' => 'btn btn-primary',
-                // ],
             ]
-        );
+            );
     }
 }
