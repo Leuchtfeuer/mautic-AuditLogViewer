@@ -1,33 +1,31 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MauticPlugin\LeuchtfeuerLogBundle\Integration;
 
-use Mautic\PluginBundle\Integration\AbstractIntegration;
-use Symfony\Contracts\Translation\TranslatorInterface;
-
-class LogIntegration extends AbstractIntegration
+use Mautic\IntegrationsBundle\Integration\BasicIntegration;
+use Mautic\IntegrationsBundle\Integration\ConfigurationTrait;
+use Mautic\IntegrationsBundle\Integration\Interfaces\BasicInterface;
+class LogIntegration extends BasicIntegration implements BasicInterface
 {
-    private $translator;
+    use ConfigurationTrait;
 
     public const PLUGIN_NAME = 'Log';
+    public const DISPLAY_NAME = 'Audit Log Viewer';
 
-    public function __construct(TranslatorInterface $translator)
-    {
-        $this->translator = $translator;
-    }
-
-    public function getName()
+    public function getName(): string
     {
         return self::PLUGIN_NAME;
     }
 
-    public function getDisplayName()
+    public function getDisplayName(): string
     {
-        return $this->translator->trans('mautic.log.log.name');
+        return self::DISPLAY_NAME;
     }
 
-    public function getAuthenticationType()
+    public function getIcon(): string
     {
-        return 'none';
+        return 'plugins/LeuchtfeuerLogBundle/Assets/img/log.png';
     }
 }
