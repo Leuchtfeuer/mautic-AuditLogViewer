@@ -4,19 +4,19 @@ return [
     'name'          => 'LeuchtfeuerLog',
     'description'   => 'Displays live audit log table',
     'version'       => '1.0',
-    'author'        => 'Alan Syrgak',
+    'author'        => 'Leuchtfeuer Digital Marketing(Alan Syrgak)',
 
     'routes'        => [
         'main' => [
             'mautic_log_index'  => [
-                'path'  => '/log/{page}',
+                'path'       => '/log/{page}',
                 'controller' => 'MauticPlugin\LeuchtfeuerLogBundle\Controller\LogController::indexAction',
             ],
             'mautic_log_clear'  => [
-                'path'  => '/log/clear',
+                'path'          => '/log/clear',
                 'controller'    => 'MauticPlugin\LeuchtfeuerLogBundle\Controller\LogController::clearSession',
-            ]
-        ]
+            ],
+        ],
     ],
 
     'menu'  => [
@@ -27,14 +27,14 @@ return [
                     'route'         => 'mautic_log_index',
                     'checks'        => [
                         'integration'   => [
-                            'Log'   =>  [
+                            'Log'   => [
                                 'enabled'   => true,
-                            ]
-                        ]
+                            ],
+                        ],
                     ],
                     'priority'      => -10,
-            ]
-        ]
+            ],
+        ],
     ],
 
     'services'      => [
