@@ -4,28 +4,25 @@ declare(strict_types=1);
 
 namespace MauticPlugin\LeuchtfeuerLogBundle\Integration;
 
-use Mautic\IntegrationsBundle\Integration\BasicIntegration;
-use Mautic\IntegrationsBundle\Integration\ConfigurationTrait;
-use Mautic\IntegrationsBundle\Integration\Interfaces\BasicInterface;
-class LogIntegration extends BasicIntegration implements BasicInterface
-{
-    use ConfigurationTrait;
+use Mautic\PluginBundle\Integration\AbstractIntegration;
 
+class LogIntegration extends AbstractIntegration
+{
     public const PLUGIN_NAME = 'Log';
     public const DISPLAY_NAME = 'Audit Log Viewer';
 
-    public function getName(): string
+    public function getName()
     {
         return self::PLUGIN_NAME;
     }
 
-    public function getDisplayName(): string
+    public function getDisplayName()
     {
         return self::DISPLAY_NAME;
     }
 
-    public function getIcon(): string
+    public function getAuthenticationType()
     {
-        return 'plugins/LeuchtfeuerLogBundle/Assets/img/log.png';
+        return 'none';
     }
 }
