@@ -1,14 +1,3 @@
-.filter-pt-25 {
-    padding-top: 35px,
-}
-
-
-
-.row.align-items-center {
-    display: flex;
-    align-items: center;
-}
-
 .action-bundle-select {
     min-height: 40px;
     height: auto;

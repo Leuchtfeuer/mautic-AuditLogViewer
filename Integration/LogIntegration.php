@@ -10,6 +10,7 @@ class LogIntegration extends AbstractIntegration
 {
     public const PLUGIN_NAME = 'Log';
     public const DISPLAY_NAME = 'Audit Log Viewer';
+    public const AUTHENTICATION_TYPE = 'none';
 
     public function getName()
     {
@@ -23,6 +24,6 @@ class LogIntegration extends AbstractIntegration
 
     public function getAuthenticationType()
     {
-        return 'none';
+        return self::AUTHENTICATION_TYPE;
     }
 }
