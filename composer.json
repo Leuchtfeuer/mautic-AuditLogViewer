@@ -1,0 +1,17 @@
+{
+    "name": "mautic/plugin-log",
+    "description": "Audit Log View",
+    "type": "mautic-plugin",
+    "keywords": [
+        "mautic",
+        "plugin",
+        "integration"
+    ],
+    "extra": {
+        "install-directory-name": "LeuchtfeuerLogBundle"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "mautic/core-lib": "^5.0"
+    }
+}

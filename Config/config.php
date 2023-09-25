@@ -4,7 +4,7 @@ return [
     'name'          => 'LeuchtfeuerLog',
     'description'   => 'Displays live audit log table',
     'version'       => '1.0',
-    'author'        => 'Leuchtfeuer Digital Marketing(Alan Syrgak)',
+    'author'        => 'Leuchtfeuer Digital Marketing GmbH',
 
     'routes'        => [
         'main' => [
