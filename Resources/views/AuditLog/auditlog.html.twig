@@ -1,0 +1,134 @@
+{% extends '@MauticCore/Default/content.html.twig' %}
+
+{% block headerTitle %}
+    <div class="pull-left mt-5"><span class="span-block">{{ 'mautic.lead.log.title'|trans }}</span><span class="span-block small ml-sm">
+{% endblock %}
+
+{% block content %}
+    <!-- #audutlog-container -->
+    <form method="POST" action="{{ path('mautic_log_index') }}" id="filter-form">
+        <!-- add your filter input fields here -->
+        <div class="mt-3 mb-3">
+            <div class="row align-items-center">
+                <div class="col-md-2">
+                    <div class="form-group pl-10">
+                        {{ form_label(filterForm.userName) }}
+                        {{ form_widget(filterForm.userName) }}
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group" id="filterFormContainer">
+                        {{ form_label(filterForm.action) }}
+                        {{ form_widget(filterForm.action, {'attr': { 'class': 'form-control action-bundle-select' } }) }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        {{ form_label(filterForm.bundle) }}
+                        {{ form_widget(filterForm.bundle) }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        {{ form_label(filterForm.object) }}
+                        {{ form_widget(filterForm.object) }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        {{ form_label(filterForm.timePeriodStart )}}
+                        {{ form_widget(filterForm.timePeriodStart, { 'attr': { 'class': 'form-control' } }) }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        {{ form_label(filterForm.timePeriodEnd )}}
+                        {{ form_widget(filterForm.timePeriodEnd, { 'attr': { 'class': 'form-control' } }) }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        {{ form_widget(filterForm.submit, {'attr': {'class': 'btn btn-primary'} }) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </form>
+
+    <div class="pa-15" id="auditlog-table">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped table-bordered user-list" id="auditlog-table">
+                <thead>
+                    <tr>
+                        {{ include('@MauticCore/Helper/tableheader.html.twig', {
+                            'orderBy': 'dateAdded',
+                            'text': 'mautic.lead.log.date_added',
+                            'class': 'visible-md visible-lg timeline-timestamp',
+                            'target': '#auditlog-table',
+                        }) }}
+                        {{ include('@MauticCore/Helper/tableheader.html.twig', {
+                            'orderBy': 'userName',
+                            'text': 'mautic.lead.log.user_name',
+                            'class': 'visible-md visible-lg timeline-name',
+                            'target': '#auditlog-table',
+                        }) }}
+                        {{ include('@MauticCore/Helper/tableheader.html.twig', {
+                            'orderBy': 'bundle',
+                            'text': 'mautic.lead.log.bundle',
+                            'class': 'visible-md visible-lg timeline-bundle',
+                            'target': '#auditlog-table',
+                        }) }}
+                        {{ include('@MauticCore/Helper/tableheader.html.twig', {
+                            'orderBy': 'object',
+                            'text': 'mautic.lead.log.object',
+                            'class': 'visible-md visible-lg timeline-object',
+                            'target': '#auditlog-table',
+                        }) }}
+                        {{ include('@MauticCore/Helper/tableheader.html.twig', {
+                            'orderBy': 'objectId',
+                            'text': 'mautic.lead.log.object_id',
+                            'class': 'visible-md visible-lg timeline-objectId',
+                            'target': '#auditlog-table',
+                        }) }}
+                        {{ include('@MauticCore/Helper/tableheader.html.twig', {
+                            'orderBy': 'action',
+                            'text': 'mautic.lead.log.action',
+                            'class': 'visible-md visible-lg timeline-action',
+                            'target': '#auditlog-table',
+                        }) }}
+                    </tr>
+                    <tbody>
+                    {% for event in usersActivity.events %}
+                        {% set counter = loop.index0 + 1 %}
+                        {% set icon = event.icon|default('fa-history') %}
+                        {% set rowStripe = cycle(['', 'timeline-row-highlighted'], loop.index0) %}
+                        {% set hasDetails = false %}
+                        <tr class="timeline-row {{ rowStripe }} {% if event.featured is defined %}timeline-featured{% endif %}">
+                            <td class="visible-md visible-lg">{% if event.dateAdded is defined %}{{ dateToText(event.dateAdded, 'local', 'Y-m-d H:i:s', true)}}{% endif %}</td>
+                            <td class="visible-md visible-lg">{% if event.userName is defined %}{{ event.userName }}{% endif %}</td>
+                            <td class="visible-md visible-lg">{% if event.bundle is defined %}{{event.bundle }}{% endif %}</td>
+                            <td class="visible-md visible-lg">{% if event.object is defined %}{{ event.object }}{% endif %}</td>
+                            <td class="visible-md visible-lg">{% if event.objectId is defined %}{{ event.objectId }}{% endif %}</td>
+                            <td class="visible-md visible-lg">{% if event.action is defined %}{{ event.action }}{% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </thead>
+            </table>
+            <div class="panel-footer">
+            {{ include('@MauticCore/Helper/pagination.html.twig', {
+                    'page': usersActivity.page,
+                    'fixedPages': usersActivity.maxPages,
+                    'fixedLimit': true,
+                    'baseUrl': path('mautic_log_index'),
+                    'target': '#auditlog-table',
+                    'totalItems': usersActivity.total,
+            }) }}
+            </div>
+        </div>
+    </div>
+    
+{{ includeStylesheet('plugins/LeuchtfeuerLogBundle/Assets/css/log.css') }}
+
+{% endblock %}
