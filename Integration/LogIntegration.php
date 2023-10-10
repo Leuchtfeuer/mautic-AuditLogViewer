@@ -9,7 +9,7 @@ use Mautic\PluginBundle\Integration\AbstractIntegration;
 class LogIntegration extends AbstractIntegration
 {
     public const PLUGIN_NAME = 'Log';
-    public const DISPLAY_NAME = 'Audit Log Viewer';
+    public const DISPLAY_NAME = 'Audit Log Viewer by Leuchtfeuer';
     public const AUTHENTICATION_TYPE = 'none';
 
     public function getName()
