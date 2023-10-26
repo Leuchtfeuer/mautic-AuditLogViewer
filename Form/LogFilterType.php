@@ -74,7 +74,7 @@ class LogFilterType extends AbstractType
                 'required'  => false,
             ])
             ->add('submit', SubmitType::class, [
-                'label'     => 'Submit filters',
+                'label'     => 'Apply',
             ]
             );
     }
