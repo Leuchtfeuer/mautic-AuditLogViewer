@@ -1,0 +1,36 @@
+{# search.html.twig #}
+
+{% set searchValue = searchValue|default('') %}
+{% set target = target|default('.page-list') %}
+{% set overlayTarget = overlayTarget|default(target) %}
+{% set overlayEnabled = overlayDisabled is defined and overlayDisabled is not empty ? 'false' : 'true' %}
+{% set id = searchId|default('list-search') %}
+{% set tmpl = tmpl|default('list') %}
+
+<div class="input-group">
+    {% if searchHelp is defined and searchHelp is not empty %}
+    <div class="input-group-btn">
+        <button class="btn btn-default btn-nospin" data-toggle="modal" data-target="#{{ searchId }}-search-help">
+            <i class="fa fa-question-circle"></i>
+        </button>
+    </div>
+    {% endif %}
+
+    {{ form_start(filterForm) }}
+
+    {{ form_widget(filterForm.filter, {'attr': {'class': 'form-control search', 'placeholder': 'Filter...'}}) }}
+    {{ form_widget(filterForm.timePeriodStart, {'attr': {'class': 'form-control'}}) }}
+    {{ form_widget(filterForm.timePeriodEnd, {'attr': {'class': 'form-control'}}) }}
+    <div class="input-group-btn">
+        {{ form_widget(filterForm.submit) }}
+        <i class="fa fa-search fa-fw"></i> {{ label|default('') }}
+    </div>
+
+    {{ form_end(filterForm) }}
+</div>
+
+{{- include('@MauticCore/Helper/modal.html.twig', {
+    id: (searchId ~ '-search-help'),
+    header: 'mautic.core.search.header'|trans,
+    body: (searchHelp|trans)
+}) -}}
