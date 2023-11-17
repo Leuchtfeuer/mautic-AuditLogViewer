@@ -63,22 +63,24 @@ class LogRepository extends CommonRepository
         }
 
         if (isset($filters['filter']) && !empty($filters['filter'])) {
-            $separeted_filter = $this->getFilter($filters['filter']);
-            if ($separeted_filter[2] == 1) {
-                $query->andWhere('al.userName = :userName')
-                      ->setParameter('userName', $separeted_filter[1]);
-            } else if ($separeted_filter[2] == 2) {
-                $query->andWhere('al.bundle = :bundle')
-                      ->setParameter('bundle', $separeted_filter[1]);
-            } else if ($separeted_filter[2] == 3) {
-                $query->andWhere('al.object = :object')
-                      ->setParameter('object', $separeted_filter[1]);
-            } else if ($separeted_filter[2] == 4) {
-                $query->andWhere('al.objectId = :objectId')
-                      ->setParameter('objectId', $separeted_filter[1]);
-            } else if ($separeted_filter[2] == 5) {
-                $query->andWhere('al.action = :action')
-                      ->setParameter('action', $separeted_filter[1]);
+            $separated_filter = $this->getFilter($filters['filter']);
+            $parameterValue = '%' . $separated_filter[1] . '%';
+
+            if ($separated_filter[2] == 1) {
+                $query->andWhere('al.userName LIKE :userName')
+                      ->setParameter('userName', $parameterValue);
+            } else if ($separated_filter[2] == 2) {
+                $query->andWhere('al.bundle LIKE :bundle')
+                      ->setParameter('bundle', $parameterValue);
+            } else if ($separated_filter[2] == 3) {
+                $query->andWhere('al.object LIKE :object')
+                      ->setParameter('object', $parameterValue);
+            } else if ($separated_filter[2] == 4) {
+                $query->andWhere('al.objectId LIKE :objectId')
+                      ->setParameter('objectId', $parameterValue);
+            } else if ($separated_filter[2] == 5) {
+                $query->andWhere('al.action LIKE :action')
+                      ->setParameter('action', $parameterValue);
             }
         }
 
@@ -115,22 +117,24 @@ class LogRepository extends CommonRepository
         }
 
         if (isset($filters['filter']) && !empty($filters['filter'])) {
-            $separeted_filter = $this->getFilter($filters['filter']);
-            if ($separeted_filter[2] == 1) {
-                $query->andWhere('al.userName = :userName')
-                      ->setParameter('userName', $separeted_filter[1]);
-            } else if ($separeted_filter[2] == 2) {
-                $query->andWhere('al.bundle = :bundle')
-                      ->setParameter('bundle', $separeted_filter[1]);
-            } else if ($separeted_filter[2] == 3) {
-                $query->andWhere('al.object = :object')
-                      ->setParameter('object', $separeted_filter[1]);
-            } else if ($separeted_filter[2] == 4) {
-                $query->andWhere('al.objectId = :objectId')
-                      ->setParameter('objectId', $separeted_filter[1]);
-            } else if ($separeted_filter[2] == 5) {
-                $query->andWhere('al.action = :action')
-                      ->setParameter('action', $separeted_filter[1]);
+            $separated_filter = $this->getFilter($filters['filter']);
+            $parameterValue = '%' . $separated_filter[1] . '%';
+
+            if ($separated_filter[2] == 1) {
+                $query->andWhere('al.userName LIKE :userName')
+                      ->setParameter('userName', $parameterValue);
+            } else if ($separated_filter[2] == 2) {
+                $query->andWhere('al.bundle LIKE :bundle')
+                      ->setParameter('bundle', $parameterValue);
+            } else if ($separated_filter[2] == 3) {
+                $query->andWhere('al.object LIKE :object')
+                      ->setParameter('object', $parameterValue);
+            } else if ($separated_filter[2] == 4) {
+                $query->andWhere('al.objectId LIKE :objectId')
+                      ->setParameter('objectId', $parameterValue);
+            } else if ($separated_filter[2] == 5) {
+                $query->andWhere('al.action LIKE :action')
+                      ->setParameter('action', $parameterValue);
             }
         }
 
