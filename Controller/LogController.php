@@ -22,27 +22,21 @@ class LogController extends FormController
         $filters = null;
         if ($filterForm->isSubmitted()) {
             $formData = $filterForm->getData();
-            $filterParameter = $formData['filter'];
+            $userName = $formData['userName'];
             $startDate = $formData['timePeriodStart'];
             $endDate = $formData['timePeriodEnd'];
-            // $actionBundle = $formData['action'];
-            // $userName = $formData['userName'];
-            // $bundleBundle = $formData['bundle'];
-            // $objectBundle = $formData['object'];
+            $bundle = $formData['bundle'];
+            $object = $formData['object'];
+            $action = $formData['action'];
 
             $filters = [
-                'filter'        => $filterParameter,
+                'user_name'     => $userName,
                 'start_date'    => $startDate,
                 'end_date'      => $endDate,
-                // 'user_name'     => $userName,
-                // 'action_bundle' => $actionBundle,
-                // 'bundle_bundle' => $bundleBundle,
-                // 'object_bundle' => $objectBundle,
+                'bundle'        => $bundle,
+                'object'        => $object,
+                'action'        => $action,
             ];
-
-            $session->set('mautic.users.auditlog.filters', $filters);
-        } else {
-            $filters = $session->get('mautic.users.auditlog.filters', []);
         }
 
         $events = $this->getLogAuditLogs($filters, $page);
@@ -54,7 +48,7 @@ class LogController extends FormController
                 'filters'           => $filters,
                 'filterForm'        => $filterForm->createView(),
                 'tmpl'              => $tmpl,
-
+                'currentRoute'      => $this->generateUrl('mautic_log_index', ['page' => $page]),
             ],
             'contentTemplate' => '@LeuchtfeuerLog/AuditLog/list.html.twig',
             'passthroughVars' => [

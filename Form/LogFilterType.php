@@ -14,68 +14,60 @@ class LogFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('filter', TextType::class, [
+            ->add('userName', TextType::class, [
                 'required'      => false,
                 'attr'          => [
-                    'type'          => 'search',
                     'class'         => 'form-control search',
                     'id'            => 'list-search',
-                    'name'          => 'search',
-                    'placeholder'   => 'Filter...'
+                    'name'          => 'userName',
+                    'placeholder'   => 'Username'
                 ],
             ])
-            // ->add('userName', TextType::class, [
-            //     'required'      => false,
-            //     'attr'          => [
-            //         'type'       => 'search',
-            //         'class'      => 'form-control search',
-            //         'placeholder'=> 'Search by name',
-            //     ],
-            // ])
-            // ->add('action', ChoiceType::class, [
-            //     'choices'   => [
-            //         'delete'     => 'delete',
-            //         'create'     => 'create',
-            //         'identified' => 'identified',
-            //         'ipadded'    => 'ipadded',
-            //         'update'     => 'update',
-            //         'login'      => 'login',
-            //     ],
-            //     'required'      => false,
-            //     'multiple'      => true,
-            //     'attr'          => [
-            //         'class' => 'form-control',
-            //         'name'  => 'filterForm[actionBundle]',
-            //     ],
-            //     'placeholder'   => 'Select an action',
-            // ])
-            // ->add('bundle', ChoiceType::class, [
-            //     'choices'   => [
-            //         'user'      => 'user',
-            //         'lead'      => 'lead',
-            //         'campaign'  => 'campaign',
-            //         'page'      => 'page',
-            //     ],
-            //     'required'      => false,
-            //     'multiple'      => true,
-            //     'attr'          => [
-            //         'class' => 'form-control',
-            //     ],
-            // ])
-            // ->add('object', ChoiceType::class, [
-            //     'choices'   => [
-            //         'user'      => 'user',
-            //         'lead'      => 'lead',
-            //         'campaign'  => 'campaign',
-            //         'page'      => 'page',
-            //         'security'  => 'security',
-            //     ],
-            //     'required'      => false,
-            //     'multiple'      => true,
-            //     'attr'          => [
-            //         'class' => 'form-control',
-            //     ],
-            // ])
+            ->add('action', ChoiceType::class, [
+                'choices'   => [
+                    'delete'     => 'delete',
+                    'create'     => 'create',
+                    'identified' => 'identified',
+                    'ipadded'    => 'ipadded',
+                    'update'     => 'update',
+                    'login'      => 'login',
+                ],
+                'required'      => false,
+                'multiple'      => true,
+            ])
+            ->add('bundle', ChoiceType::class, [
+                'choices'   => [
+                    'user'      => 'user',
+                    'lead'      => 'lead',
+                    'campaign'  => 'campaign',
+                    'page'      => 'page',
+                ],
+                'required'      => false,
+                'multiple'      => true,
+                'attr'          => [
+                    'class' => 'form-control',
+                ],
+            ])
+            ->add('object', ChoiceType::class, [
+                'choices'   => [
+                    'user'      => 'user',
+                    'lead'      => 'lead',
+                    'campaign'  => 'campaign',
+                    'page'      => 'page',
+                    'security'  => 'security',
+                    'client'    => 'client',
+                    'company'   => 'company',
+                    'config'    => 'config',
+                    'email'     => 'email',
+                    'form'      => 'form',
+                    'segment'   => 'segment'
+                ],
+                'required'      => false,
+                'multiple'      => true,
+                'attr'          => [
+                    'class' => 'form-control',
+                ],
+            ])
             ->add('timePeriodStart', DateType::class, [
                 'widget'    => 'single_text',
                 'required'  => false,
@@ -86,7 +78,6 @@ class LogFilterType extends AbstractType
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Apply',
-                 // This allows HTML in the label
                 'attr'          => [
                     'type'          => 'search',
                     'class'         => 'btn btn-default btn-search btn-nospin',

@@ -1,36 +1,92 @@
 {# search.html.twig #}
 
-{% set searchValue = searchValue|default('') %}
 {% set target = target|default('.page-list') %}
 {% set overlayTarget = overlayTarget|default(target) %}
 {% set overlayEnabled = overlayDisabled is defined and overlayDisabled is not empty ? 'false' : 'true' %}
-{% set id = searchId|default('list-search') %}
 {% set tmpl = tmpl|default('list') %}
 
-<div class="input-group">
-    {% if searchHelp is defined and searchHelp is not empty %}
-    <div class="input-group-btn">
-        <button class="btn btn-default btn-nospin" data-toggle="modal" data-target="#{{ searchId }}-search-help">
-            <i class="fa fa-question-circle"></i>
-        </button>
+<style>
+.filter-form {
+    display: flex;
+    justify-content: space-between;
+}
+.select-form {
+    flex: 0 0 calc(23.33% - 10px);
+    height: 32px;
+    display: inline;
+    padding: 6px 0px 0px;
+    padding-bottom: 12px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    line-height: 1.3856;
+    color: #596776;
+    background-image: none;
+}
+.input-form {
+    flex: 0 0 calc(23.33% - 10px);
+    height: 32px;
+    padding: 6px;
+    font-size: 13px;
+    line-height: 1.3856;
+    color: #596776;
+    background-color: #fff;
+    background-image: none;
+}
+
+.btn-log {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid;
+    padding: 6px 12px;
+    font-size: 13px;
+    line-height: 1.3856;
+    border-radius: 3px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.btn-not-default {
+    color: #fff;
+    background-color: #3b5998;
+    border-color: #ddd;
+    border: 1px;
+}
+</style>
+
+{{ form_start(filterForm) }}
+    <div class="input-group">
+        <div>
+            {{ form_widget(filterForm.userName, {attr: {'class': 'form-control search', 'placeholder': 'Username...'}}) }}
+            {{ form_widget(filterForm.timePeriodStart, {attr: {'class': 'form-control'}}) }}
+            {{ form_widget(filterForm.timePeriodEnd, {attr: {'class': 'form-control'}})}}
+
+            <div class="input-group-btn">
+                {{ form_widget(filterForm.submit, {'attr': {'class': 'btn btn-not-default btn-nospin'}}) }}
+            </div>
+        </div>
     </div>
-    {% endif %}
-
-    {{ form_start(filterForm) }}
-
-    {{ form_widget(filterForm.filter, {'attr': {'class': 'form-control search', 'placeholder': 'Filter...'}}) }}
-    {{ form_widget(filterForm.timePeriodStart, {'attr': {'class': 'form-control'}}) }}
-    {{ form_widget(filterForm.timePeriodEnd, {'attr': {'class': 'form-control'}}) }}
-    <div class="input-group-btn">
-        {{ form_widget(filterForm.submit) }}
-        <i class="fa fa-search fa-fw"></i> {{ label|default('') }}
+    <br>
+    <div class="filter-form pl-1 pb-10 col-xs-9">
+        <div class="select-form">
+            {{ form_label(filterForm.bundle) }}
+            {{ form_widget(filterForm.bundle) }}
+        </div>
+        <div class="select-form">
+            {{ form_label(filterForm.object) }}
+            {{ form_widget(filterForm.object, {attr: {'class': 'form-control'}}) }}
+        </div>
+        <div class="select-form">
+            {{ form_label(filterForm.action) }}
+            {{ form_widget(filterForm.action, {attr: {'class': 'select-form'}}) }}
+        </div>
     </div>
-
-    {{ form_end(filterForm) }}
-</div>
-
-{{- include('@MauticCore/Helper/modal.html.twig', {
-    id: (searchId ~ '-search-help'),
-    header: 'mautic.core.search.header'|trans,
-    body: (searchHelp|trans)
-}) -}}
+{{ form_end(filterForm) }}

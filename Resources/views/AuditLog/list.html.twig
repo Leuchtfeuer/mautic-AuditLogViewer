@@ -7,8 +7,9 @@
 {% block content %}
     {% if isIndex %}
         {{- include('@LeuchtfeuerLog/Helper/list_toolbar.html.twig', {
-            'searchValue' : searchValue|default(''),
-            'searchHelp'  : 'mautic.user.log.help.searchcommands',
+            'searchValue'   : searchValue|default(''),
+            'searchHelp'    : 'mautic.user.log.help.searchcommands',
+            'action'        : currentRoute,
         }) -}}
         <div class="page-list">
             {{ block('listResults') }}
@@ -20,7 +21,7 @@
 {% endblock %}
 
 {% block listResults %}
-<div class="pa-15">
+<div class="pa-15 pt-20">
     <div class="table-responsive">
         <table class="table table-hover table-striped table-bordered user-list" id="auditlog-table">
             <thead>
