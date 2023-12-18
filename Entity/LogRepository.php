@@ -1,5 +1,7 @@
 <?php
 
+
+
 namespace MauticPlugin\LeuchtfeuerLogBundle\Entity;
 
 use Mautic\CoreBundle\Entity\CommonRepository;

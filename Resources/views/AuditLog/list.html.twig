@@ -29,37 +29,37 @@
                     {{ include('@MauticCore/Helper/tableheader.html.twig', {
                         'orderBy': 'dateAdded',
                         'text': 'mautic.lead.log.date_added',
-                        'class': 'visible-md visible-lg timeline-timestamp',
+                        'class': 'timeline-timestamp',
                         'target': '#auditlog-table',
                     }) }}
                     {{ include('@MauticCore/Helper/tableheader.html.twig', {
                         'orderBy': 'userName',
                         'text': 'mautic.lead.log.user_name',
-                        'class': 'visible-md visible-lg timeline-name',
+                        'class': 'timeline-name',
                         'target': '#auditlog-table',
                     }) }}
                     {{ include('@MauticCore/Helper/tableheader.html.twig', {
                         'orderBy': 'bundle',
                         'text': 'mautic.lead.log.bundle',
-                        'class': 'visible-md visible-lg timeline-bundle',
+                        'class': 'timeline-bundle',
                         'target': '#auditlog-table',
                     }) }}
                     {{ include('@MauticCore/Helper/tableheader.html.twig', {
                         'orderBy': 'object',
                         'text': 'mautic.lead.log.object',
-                        'class': 'visible-md visible-lg timeline-object',
+                        'class': 'timeline-object',
                         'target': '#auditlog-table',
                     }) }}
                     {{ include('@MauticCore/Helper/tableheader.html.twig', {
                         'orderBy': 'objectId',
                         'text': 'mautic.lead.log.object_id',
-                        'class': 'visible-md visible-lg timeline-objectId',
+                        'class': 'timeline-objectId',
                         'target': '#auditlog-table',
                         }) }}
                     {{ include('@MauticCore/Helper/tableheader.html.twig', {
                         'orderBy': 'action',
                         'text': 'mautic.lead.log.action',
-                        'class': 'visible-md visible-lg timeline-action',
+                        'class': 'timeline-action',
                         'target': '#auditlog-table',
                     }) }}
                 </tr>
@@ -70,12 +70,12 @@
                         {% set rowStripe = cycle(['', 'timeline-row-highlighted'], loop.index0) %}
                         {% set hasDetails = false %}
                             <tr class="timeline-row {{ rowStripe }} {% if event.featured is defined %}timeline-featured{% endif %}">
-                                <td class="visible-md visible-lg">{% if event.dateAdded is defined %}{{ dateToText(event.dateAdded, 'local', 'Y-m-d H:i:s', true)}}{% endif %}</td>
-                                <td class="visible-md visible-lg">{% if event.userName is defined %}{{ event.userName }}{% endif %}</td>
-                                <td class="visible-md visible-lg">{% if event.bundle is defined %}{{event.bundle }}{% endif %}</td>
-                                <td class="visible-md visible-lg">{% if event.object is defined %}{{ event.object }}{% endif %}</td>
-                                <td class="visible-md visible-lg">{% if event.objectId is defined %}{{ event.objectId }}{% endif %}</td>
-                                <td class="visible-md visible-lg">{% if event.action is defined %}{{ event.action }}{% endif %}</td>
+                                <td>{% if event.dateAdded is defined %}{{ dateToText(event.dateAdded, 'local', 'Y-m-d H:i:s', true)}}{% endif %}</td>
+                                <td>{% if event.userName is defined %}{{ event.userName }}{% endif %}</td>
+                                <td>{% if event.bundle is defined %}{{event.bundle }}{% endif %}</td>
+                                <td>{% if event.object is defined %}{{ event.object }}{% endif %}</td>
+                                <td>{% if event.objectId is defined %}{{ event.objectId }}{% endif %}</td>
+                                <td>{% if event.action is defined %}{{ event.action }}{% endif %}</td>
                             </tr>
                     {% endfor %}
                 </tbody>
