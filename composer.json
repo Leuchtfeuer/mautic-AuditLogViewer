@@ -1,6 +1,14 @@
 {
-    "name": "mautic/plugin-log",
-    "description": "Audit Log View",
+    "name": "leuchtfeuer/mautic-AuditLogViewer",
+    "description": "Introduce menu item which gives access to the Audit Log",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Leuchtfeuer Digital Marketing GmbH",
+            "email": "mautic-plugins@Leuchtfeuer.com",
+            "homepage": "https://www.Leuchtfeuer.com"
+        }
+    ],
     "type": "mautic-plugin",
     "keywords": [
         "mautic",

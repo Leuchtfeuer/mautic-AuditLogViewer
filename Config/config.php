@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'name'          => 'LeuchtfeuerLog',
-    'description'   => 'Displays live audit log table',
+    'name'          => 'Audit Log Viewer by Leuchtfeuer',
+    'description'   => 'Introduce menu item which gives access to the Audit Log',
     'version'       => '1.0',
     'author'        => 'Leuchtfeuer Digital Marketing GmbH',
 

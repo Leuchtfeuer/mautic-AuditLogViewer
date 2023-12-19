@@ -1,0 +1,96 @@
+{% set isIndex = tmpl == 'index' ? true : false %}
+{% set tmpl = 'list' %}
+
+{% extends isIndex ? '@MauticCore/Default/content.html.twig' : '@MauticCore/Default/raw_output.html.twig' %}
+{% block headerTitle %}{% trans %}mautic.lead.log.title{% endtrans %}{% endblock %}
+
+{% block content %}
+    {% if isIndex %}
+        {{- include('@LeuchtfeuerLog/Helper/list_toolbar.html.twig', {
+            'searchValue'   : searchValue|default(''),
+            'searchHelp'    : 'mautic.user.log.help.searchcommands',
+            'action'        : currentRoute,
+        }) -}}
+        <div class="page-list">
+            {{ block('listResults') }}
+        </div>
+    {% else %}
+        {{ block('listResults') }}
+    {% endif %}
+
+{% endblock %}
+
+{% block listResults %}
+<div class="pa-15 pt-20">
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-bordered user-list" id="auditlog-table">
+            <thead>
+                <tr>
+                    {{ include('@MauticCore/Helper/tableheader.html.twig', {
+                        'orderBy': 'dateAdded',
+                        'text': 'mautic.lead.log.date_added',
+                        'class': 'timeline-timestamp',
+                        'target': '#auditlog-table',
+                    }) }}
+                    {{ include('@MauticCore/Helper/tableheader.html.twig', {
+                        'orderBy': 'userName',
+                        'text': 'mautic.lead.log.user_name',
+                        'class': 'timeline-name',
+                        'target': '#auditlog-table',
+                    }) }}
+                    {{ include('@MauticCore/Helper/tableheader.html.twig', {
+                        'orderBy': 'bundle',
+                        'text': 'mautic.lead.log.bundle',
+                        'class': 'timeline-bundle',
+                        'target': '#auditlog-table',
+                    }) }}
+                    {{ include('@MauticCore/Helper/tableheader.html.twig', {
+                        'orderBy': 'object',
+                        'text': 'mautic.lead.log.object',
+                        'class': 'timeline-object',
+                        'target': '#auditlog-table',
+                    }) }}
+                    {{ include('@MauticCore/Helper/tableheader.html.twig', {
+                        'orderBy': 'objectId',
+                        'text': 'mautic.lead.log.object_id',
+                        'class': 'timeline-objectId',
+                        'target': '#auditlog-table',
+                        }) }}
+                    {{ include('@MauticCore/Helper/tableheader.html.twig', {
+                        'orderBy': 'action',
+                        'text': 'mautic.lead.log.action',
+                        'class': 'timeline-action',
+                        'target': '#auditlog-table',
+                    }) }}
+                </tr>
+                <tbody>
+                    {% for event in usersActivity.events %}
+                        {% set counter = loop.index0 + 1 %}
+                        {% set icon = event.icon|default('fa-history') %}
+                        {% set rowStripe = cycle(['', 'timeline-row-highlighted'], loop.index0) %}
+                        {% set hasDetails = false %}
+                            <tr class="timeline-row {{ rowStripe }} {% if event.featured is defined %}timeline-featured{% endif %}">
+                                <td>{% if event.dateAdded is defined %}{{ dateToText(event.dateAdded, 'local', 'Y-m-d H:i:s', true)}}{% endif %}</td>
+                                <td>{% if event.userName is defined %}{{ event.userName }}{% endif %}</td>
+                                <td>{% if event.bundle is defined %}{{event.bundle }}{% endif %}</td>
+                                <td>{% if event.object is defined %}{{ event.object }}{% endif %}</td>
+                                <td>{% if event.objectId is defined %}{{ event.objectId }}{% endif %}</td>
+                                <td>{% if event.action is defined %}{{ event.action }}{% endif %}</td>
+                            </tr>
+                    {% endfor %}
+                </tbody>
+            </thead>
+        </table>
+        <div class="panel-footer">
+            {{ include('@MauticCore/Helper/pagination.html.twig', {
+                'page': usersActivity.page,
+                'fixedPages': usersActivity.maxPages,
+                'fixedLimit': true,
+                'baseUrl': path('mautic_log_index'),
+
+                'totalItems': usersActivity.total,
+            }) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

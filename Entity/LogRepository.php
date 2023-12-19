@@ -1,8 +1,13 @@
 <?php
 
+
+
 namespace MauticPlugin\LeuchtfeuerLogBundle\Entity;
 
 use Mautic\CoreBundle\Entity\CommonRepository;
+use Mautic\CoreBundle\Translation\Translator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
 class LogRepository extends CommonRepository
 {
@@ -13,7 +18,7 @@ class LogRepository extends CommonRepository
      *
      * @return array
      */
-    public function getAllAuditLogs( $filters, $page = 1,$limit = 15)
+    public function getAllAuditLogs($filters, $page = 1, $limit = 25)
     {
         $query = $this->createQueryBuilder('al')
         ->select('al.userName, al.userId, al.bundle, al.object,
@@ -21,19 +26,9 @@ class LogRepository extends CommonRepository
         ->where('al.userName != :user')
         ->setParameter('user', 'System');
 
-        if (isset($filters['user_name'])  && !empty($filters['user_name'])) {
-            $query->andWhere('al.userName = :userName')
-                ->setParameter('userName', $filters['user_name']);
-        }
-
-        if (isset($filters['bundle_bundle'])  && !empty($filters['bundle_bundle'])) {
-            $query->andWhere('al.bundle IN (:bundleBundle)')
-                ->setParameter('bundleBundle', $filters['bundle_bundle']);
-        }
-
-        if (isset($filters['object_bundle'])  && !empty($filters['object_bundle'])) {
-            $query->andWhere('al.object IN (:objectBundle)')
-                ->setParameter('objectBundle', $filters['object_bundle']);
+        if (isset($filters['user_name']) && !empty($filters['user_name'])) {
+            $query->andWhere('al.userName LIKE :userName')
+                ->setParameter('userName', '%' . $filters['user_name'] . '%');
         }
 
         if (isset($filters['start_date'])  && !empty($filters['start_date'])) {
@@ -46,9 +41,19 @@ class LogRepository extends CommonRepository
                 ->setParameter('endDate', $filters['end_date']);
         }
 
-        if (isset($filters['action_bundle'])  && !empty($filters['action_bundle'])) {
+        if (isset($filters['bundle'])  && !empty($filters['bundle'])) {
+            $query->andWhere('al.bundle IN (:bundle)')
+                ->setParameter('bundle', $filters['bundle']);
+        }
+
+        if (isset($filters['object'])  && !empty($filters['object'])) {
+            $query->andWhere('al.object IN (:object)')
+                ->setParameter('object', $filters['object']);
+        }
+
+        if (isset($filters['action'])  && !empty($filters['action'])) {
             $query->andWhere('al.action IN (:action)')
-                ->setParameter('action', $filters['action_bundle']);
+                ->setParameter('action', $filters['action']);
         }
 
         if (0 === $page) {
@@ -73,19 +78,9 @@ class LogRepository extends CommonRepository
         ->where('al.userName != :user')
         ->setParameter('user', 'System');
 
-        if (isset($filters['user_name'])  && !empty($filters['user_name'])) {
-            $query->andWhere('al.userName = :userName')
-                ->setParameter('userName', $filters['user_name']);
-        }
-
-        if (isset($filters['bundle_bundle'])  && !empty($filters['bundle_bundle'])) {
-            $query->andWhere('al.bundle IN (:bundleBundle)')
-                ->setParameter('bundleBundle', $filters['bundle_bundle']);
-        }
-
-        if (isset($filters['object_bundle'])  && !empty($filters['object_bundle'])) {
-            $query->andWhere('al.object IN (:objectBundle)')
-                ->setParameter('objectBundle', $filters['object_bundle']);
+        if (isset($filters['user_name']) && !empty($filters['user_name'])) {
+            $query->andWhere('al.userName LIKE :userName')
+                ->setParameter('userName', '%' . $filters['user_name'] . '%');
         }
 
         if (isset($filters['start_date'])  && !empty($filters['start_date'])) {
@@ -98,11 +93,20 @@ class LogRepository extends CommonRepository
                 ->setParameter('endDate', $filters['end_date']);
         }
 
-        if (isset($filters['action_bundle']) && !empty($filters['action_bundle'])) {
-            $query->andWhere('al.action IN (:action)')
-                ->setParameter('action', $filters['action_bundle']);
+        if (isset($filters['bundle'])  && !empty($filters['bundle'])) {
+            $query->andWhere('al.bundle IN (:bundle)')
+                ->setParameter('bundle', $filters['bundle']);
         }
 
+        if (isset($filters['object'])  && !empty($filters['object'])) {
+            $query->andWhere('al.object IN (:object)')
+                ->setParameter('object', $filters['object']);
+        }
+
+        if (isset($filters['action'])  && !empty($filters['action'])) {
+            $query->andWhere('al.action IN (:action)')
+                ->setParameter('action', $filters['action']);
+        }
         return $query->getQuery()->getSingleScalarResult();
     }
 }

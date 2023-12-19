@@ -17,8 +17,10 @@ class LogFilterType extends AbstractType
             ->add('userName', TextType::class, [
                 'required'      => false,
                 'attr'          => [
-                    'class'      => 'form-control',
-                    'placeholder'=> 'Search by name',
+                    'class'         => 'form-control search',
+                    'id'            => 'list-search',
+                    'name'          => 'userName',
+                    'placeholder'   => 'Username'
                 ],
             ])
             ->add('action', ChoiceType::class, [
@@ -32,11 +34,6 @@ class LogFilterType extends AbstractType
                 ],
                 'required'      => false,
                 'multiple'      => true,
-                'attr'          => [
-                    'class' => 'form-control',
-                    'name'  => 'filterForm[actionBundle]',
-                ],
-                'placeholder'   => 'Select an action',
             ])
             ->add('bundle', ChoiceType::class, [
                 'choices'   => [
@@ -58,6 +55,12 @@ class LogFilterType extends AbstractType
                     'campaign'  => 'campaign',
                     'page'      => 'page',
                     'security'  => 'security',
+                    'client'    => 'client',
+                    'company'   => 'company',
+                    'config'    => 'config',
+                    'email'     => 'email',
+                    'form'      => 'form',
+                    'segment'   => 'segment'
                 ],
                 'required'      => false,
                 'multiple'      => true,
@@ -74,8 +77,12 @@ class LogFilterType extends AbstractType
                 'required'  => false,
             ])
             ->add('submit', SubmitType::class, [
-                'label'     => 'Submit filters',
-            ]
-            );
+                'label' => 'Apply',
+                'attr'          => [
+                    'type'          => 'search',
+                    'class'         => 'btn btn-default btn-search btn-nospin',
+                    'id'            => 'btn-filter',
+                ],
+            ]);
     }
 }
