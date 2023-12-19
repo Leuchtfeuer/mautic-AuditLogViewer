@@ -5,7 +5,7 @@
 {% set overlayEnabled = overlayDisabled is defined and overlayDisabled is not empty ? 'false' : 'true' %}
 {% set tmpl = tmpl|default('list') %}
 
-<style>
+{# <style>
 .filter-form {
     display: flex;
     justify-content: space-between;
@@ -60,9 +60,21 @@
     border-color: #ddd;
     border: 1px;
 }
+select.field {
+    flex: 1 0 auto !important;
+    margin: 5px !important;
+    box-sizing: border-box !important;
+}
 </style>
 
-{{ form_start(filterForm) }}
+<input type="text" name="" id="">
+<input type="date" name="" id="">
+<input type="date" name="" id="">
+<select class="field" name="" id=""></select>
+<select class="field" name="" id=""></select>
+<select class="field" name="" id=""></select> #}
+
+{# {{ form_start(filterForm) }}
     <div class="input-group">
         <div>
             {{ form_widget(filterForm.userName, {attr: {'class': 'form-control search', 'placeholder': 'Username...'}}) }}
@@ -89,4 +101,98 @@
             {{ form_widget(filterForm.action, {attr: {'class': 'select-form'}}) }}
         </div>
     </div>
-{{ form_end(filterForm) }}
+{{ form_end(filterForm) }} #}
+{# <script>
+$(document).ready(function() {
+    // Wait for the page to fully load
+    setTimeout(function() {
+        // Destroy Chosen on the select elements
+        $('select.field').chosen('destroy');
+    }, 1000); // Adjust this delay as needed
+});
+</script> #}
+<style>
+body {
+    overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+.custom-field-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjusted to 7 columns */
+    grid-auto-flow: row;
+    min-width: 1050px; /* Adjusted to match the number of columns */
+}
+
+.custom-field {
+    width: 100%;
+    min-width: 100px;
+    overflow: hidden;
+}
+
+.custom-field input {
+    padding: 8px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    font-size: 1em;
+    color: #555;
+    background-color: #fff;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
+    width: 100%;
+    height: 32px;
+}
+
+.custom-field input, .custom-field select {
+    width: 100%;
+    border-radius: 1;
+}
+
+.custom-button {
+    width: 32px;
+    height: 32px;
+    border-radius: 0; /* Right angles */
+    background-color: #4E5D9D; /* Light blue background */
+    border: none; /* Remove default button border */
+}
+</style>
+
+<div class="custom-field-container">
+    <div class="custom-field">
+        <input type="text" name="" id="">
+    </div>
+    <div class="custom-field">
+        <input type="date" name="" id="">
+    </div>
+    <div class="custom-field">
+        <input type="date" name="" id="">
+    </div>
+    <div class="custom-field">
+        <select name="" id="">
+            <option value="">Bundle</option>
+        </select>
+    </div>
+    <div class="custom-field">
+        <select name="" id="">
+            <option value="">Object</option>
+        </select>
+    </div>
+    <div class="custom-field">
+        <select name="" id="">
+            <option value="">Action</option>
+        </select>
+    </div>
+    <div class="custom-field">
+    <button type="submit" class="custom-button">
+        <i class="fa fa-search" style="color:white"></i>
+    </button>
+</div>
+</div>
+
+<script>
+$(document).ready(function() {
+    // Wait for the page to fully load
+    setTimeout(function() {
+        // Destroy Chosen on the select elements
+        $('.custom-field select').chosen('destroy');
+    }, 1000); // Adjust this delay as needed
+});
+</script>
