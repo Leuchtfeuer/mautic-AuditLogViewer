@@ -41,6 +41,8 @@ class LogFilterType extends AbstractType
                     'lead'      => 'lead',
                     'campaign'  => 'campaign',
                     'page'      => 'page',
+                    'dynamicContent' => 'dynamicContent',
+                    
                 ],
                 'required'      => false,
                 'multiple'      => true,
@@ -68,21 +70,14 @@ class LogFilterType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
-            ->add('timePeriodStart', DateType::class, [
+            ->add('timePeriodStart', DateType::class,
+            [
                 'widget'    => 'single_text',
                 'required'  => false,
             ])
             ->add('timePeriodEnd', DateType::class, [
                 'widget'    => 'single_text',
                 'required'  => false,
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Apply',
-                'attr'          => [
-                    'type'          => 'search',
-                    'class'         => 'btn btn-default btn-search btn-nospin',
-                    'id'            => 'btn-filter',
-                ],
             ]);
     }
 }

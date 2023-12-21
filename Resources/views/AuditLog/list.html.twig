@@ -5,6 +5,7 @@
 {% block headerTitle %}{% trans %}mautic.lead.log.title{% endtrans %}{% endblock %}
 
 {% block content %}
+    {{ includeStylesheet('plugins/LeuchtfeuerLogBundle/Assets/css/log.css') }}
     {% if isIndex %}
         {{- include('@LeuchtfeuerLog/Helper/list_toolbar.html.twig', {
             'searchValue'   : searchValue|default(''),
