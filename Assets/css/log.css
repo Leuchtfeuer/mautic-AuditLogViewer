@@ -1,4 +1,68 @@
-.action-bundle-select {
-    min-height: 40px;
-    height: auto;
+.custom-field-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 0; /* Add 15px padding to the left and right */
+}
+
+.custom-field, .custom-button {
+    flex: 1 0 auto; /* Allow the elements to grow and shrink as needed */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+.custom-field input {
+    height: 31.5px;
+}
+.custom-field input, .chosen-container-multi .chosen-choices {
+    width: 100%;
+    border-radius: 0px;
+    border-width: 1px;
+    border-color: #ccc;
+    color: #596776;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    background-image: none;
+    border: 1px solid #d5d5d5;
+}
+
+.chosen-container-multi .chosen-choices {
+    height: 32px; /* Set a fixed height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    width: 100%;
+    border-width: 1px;
+    border-color: #ccc;
+    color: #333;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.custom-field input:hover, .chosen-container-multi .chosen-choices:hover {
+    border-color: #999;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.custom-button {
+    height: 31.5px;
+    width: 31.5px;
+    border-radius: 0;
+    background-color: #4E5D9D;
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.custom-button:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Add a shadow on hover */
+    transform: scale(1.05); /* Make the button slightly larger on hover */
+}
+
+.custom-button:active {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Make the shadow smaller when the button is pressed */
+    transform: scale(0.95); /* Make the button slightly smaller when pressed */
+    border: 1px solid #333;
+}
+
+.chosen-choices .chosen-drop {
+    max-width: 100px; /* Set a maximum width */
+    max-height: 300px; /* Set a maximum height */
+    overflow-y: auto; /* Enable vertical scrolling */
 }
