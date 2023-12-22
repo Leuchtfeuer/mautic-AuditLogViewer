@@ -1,6 +1,8 @@
 <?php
 
-namespace MauticPlugin\LeuchtfeuerLogBundle\Entity;
+declare(strict_types=1);
+
+namespace MauticPlugin\LeuchtfeuerAuditLogViewerBundle\Entity;
 
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Mautic\CoreBundle\Doctrine\Mapping\ClassMetadataBuilder;

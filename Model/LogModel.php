@@ -1,6 +1,6 @@
 <?php
 
-namespace MauticPlugin\LeuchtfeuerLogBundle\Model;
+namespace MauticPlugin\LeuchtfeuerAuditLogViewerBundle\Model;
 
 use Mautic\CoreBundle\Model\AbstractCommonModel;
 
@@ -9,10 +9,10 @@ class LogModel extends AbstractCommonModel
     /**
      * {@inheritdoc}
      *
-     * @return \MauticPlugin\LeuchtfeuerLogBundle\Entity\LogRepository
+     * @return \MauticPlugin\LeuchtfeuerAuditLogViewerBundle\Entity\LogRepository
      */
     public function getRepository()
     {
-        return $this->em->getRepository('MauticPlugin\LeuchtfeuerLogBundle\Entity\Log');
+        return $this->em->getRepository('MauticPlugin\LeuchtfeuerAuditLogViewerBundle\Entity\Log');
     }
 }

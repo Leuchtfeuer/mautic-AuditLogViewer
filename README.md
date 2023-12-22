@@ -1,1 +1,3 @@
-# mautic-extended-auditing
+# Extended Auditing
+
+Introduce menu item which gives access to the Audit Log

@@ -1,21 +1,23 @@
 <?php
 
-namespace MauticPlugin\LeuchtfeuerLogBundle\Controller;
+namespace MauticPlugin\LeuchtfeuerAuditLogViewerBundle\Controller;
 
+use Mautic\CoreBundle\Controller\AbstractFormController;
 use Mautic\CoreBundle\Controller\FormController;
-use MauticPlugin\LeuchtfeuerLogBundle\Form\LogFilterType;
+use MauticPlugin\LeuchtfeuerAuditLogViewerBundle\Form\LogFilterType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-class LogController extends FormController
+class LeuchtfeuerAuditLogViewerController extends AbstractFormController
 {
     use LogTrait;
 
+    /**
+     * @param int $page
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction(Request $request, $page = 1)
     {
-
-        $session = $request->getSession();
-
         $filterForm = $this->createForm(LogFilterType::class);
         $filterForm->handleRequest($request);
 
@@ -48,22 +50,14 @@ class LogController extends FormController
                 'filters'           => $filters,
                 'filterForm'        => $filterForm->createView(),
                 'tmpl'              => $tmpl,
-                'currentRoute'      => $this->generateUrl('mautic_log_index', ['page' => $page]),
+                'currentRoute'      => $this->generateUrl('mautic_auditlogviewer_index', ['page' => $page]),
             ],
-            'contentTemplate' => '@LeuchtfeuerLog/AuditLog/list.html.twig',
+            'contentTemplate' => '@LeuchtfeuerAuditLogViewer/AuditLog/list.html.twig',
             'passthroughVars' => [
-                'activeLink'    => '#mautic_log_index',
-                'route'         => $this->generateUrl('mautic_log_index', ['page' => $page]),
+                'activeLink'    => '#mautic_auditlogviewer_index',
+                'route'         => $this->generateUrl('mautic_auditlogviewer_index', ['page' => $page]),
                 'auditLogCount' => $events['total'],
             ]
         ]);
-    }
-
-    public function clearSession(SessionInterface $session)
-    {
-        $session->clear();
-
-        $this->addFlash('success', 'Session data has been cleared.');
-        return $this->redirectToRoute('mautic_log_index');
     }
 }

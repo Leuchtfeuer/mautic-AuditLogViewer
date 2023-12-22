@@ -1,6 +1,6 @@
 <?php
 
-namespace MauticPlugin\LeuchtfeuerLogBundle\Form;
+namespace MauticPlugin\LeuchtfeuerAuditLogViewerBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -42,7 +42,7 @@ class LogFilterType extends AbstractType
                     'campaign'  => 'campaign',
                     'page'      => 'page',
                     'dynamicContent' => 'dynamicContent',
-                    
+
                 ],
                 'required'      => false,
                 'multiple'      => true,
@@ -62,7 +62,8 @@ class LogFilterType extends AbstractType
                     'config'    => 'config',
                     'email'     => 'email',
                     'form'      => 'form',
-                    'segment'   => 'segment'
+                    'segment'   => 'segment',
+                    'dynamicContent' => 'dynamicContent',
                 ],
                 'required'      => false,
                 'multiple'      => true,

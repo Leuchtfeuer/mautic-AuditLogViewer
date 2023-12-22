@@ -5,9 +5,9 @@
 {% block headerTitle %}{% trans %}mautic.lead.log.title{% endtrans %}{% endblock %}
 
 {% block content %}
-    {{ includeStylesheet('plugins/LeuchtfeuerLogBundle/Assets/css/log.css') }}
+    {{ includeStylesheet('plugins/LeuchtfeuerAuditLogViewerBundle/Assets/css/log.css') }}
     {% if isIndex %}
-        {{- include('@LeuchtfeuerLog/Helper/list_toolbar.html.twig', {
+        {{- include('@LeuchtfeuerAuditLogViewer/Helper/list_toolbar.html.twig', {
             'searchValue'   : searchValue|default(''),
             'searchHelp'    : 'mautic.user.log.help.searchcommands',
             'action'        : currentRoute,
@@ -87,7 +87,7 @@
                 'page': usersActivity.page,
                 'fixedPages': usersActivity.maxPages,
                 'fixedLimit': true,
-                'baseUrl': path('mautic_log_index'),
+                'baseUrl': path('mautic_auditlogviewer_index'),
 
                 'totalItems': usersActivity.total,
             }) }}

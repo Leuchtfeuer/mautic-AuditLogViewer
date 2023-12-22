@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
-
-namespace MauticPlugin\LeuchtfeuerLogBundle\Entity;
+namespace MauticPlugin\LeuchtfeuerAuditLogViewerBundle\Entity;
 
 use Mautic\CoreBundle\Entity\CommonRepository;
 use Mautic\CoreBundle\Translation\Translator;
