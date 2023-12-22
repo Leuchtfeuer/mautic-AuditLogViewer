@@ -8,8 +8,8 @@ use Mautic\PluginBundle\Integration\AbstractIntegration;
 
 class LeuchtfeuerAuditLogViewerIntegration extends AbstractIntegration
 {
-    public const PLUGIN_NAME = 'LeuchtfeuerAuditLogViewer';
-    public const DISPLAY_NAME = 'Audit Log Viewer by Leuchtfeuer';
+    public const PLUGIN_NAME         = 'LeuchtfeuerAuditLogViewer';
+    public const DISPLAY_NAME        = 'Audit Log Viewer by Leuchtfeuer';
     public const AUTHENTICATION_TYPE = 'none';
 
     public function getName()

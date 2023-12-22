@@ -10,9 +10,6 @@ use Mautic\CoreBundle\Entity\AuditLog;
 
 class Log extends AuditLog
 {
-    /**
-     * @return void
-     */
     public static function loadMetadata(ClassMetadata $metadata): void
     {
         $builder = new ClassMetadataBuilder($metadata);

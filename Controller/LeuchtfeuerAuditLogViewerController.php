@@ -3,7 +3,6 @@
 namespace MauticPlugin\LeuchtfeuerAuditLogViewerBundle\Controller;
 
 use Mautic\CoreBundle\Controller\AbstractFormController;
-use Mautic\CoreBundle\Controller\FormController;
 use MauticPlugin\LeuchtfeuerAuditLogViewerBundle\Form\LogFilterType;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -23,13 +22,13 @@ class LeuchtfeuerAuditLogViewerController extends AbstractFormController
 
         $filters = null;
         if ($filterForm->isSubmitted()) {
-            $formData = $filterForm->getData();
-            $userName = $formData['userName'];
+            $formData  = $filterForm->getData();
+            $userName  = $formData['userName'];
             $startDate = $formData['timePeriodStart'];
-            $endDate = $formData['timePeriodEnd'];
-            $bundle = $formData['bundle'];
-            $object = $formData['object'];
-            $action = $formData['action'];
+            $endDate   = $formData['timePeriodEnd'];
+            $bundle    = $formData['bundle'];
+            $object    = $formData['object'];
+            $action    = $formData['action'];
 
             $filters = [
                 'user_name'     => $userName,
@@ -57,7 +56,7 @@ class LeuchtfeuerAuditLogViewerController extends AbstractFormController
                 'activeLink'    => '#mautic_auditlogviewer_index',
                 'route'         => $this->generateUrl('mautic_auditlogviewer_index', ['page' => $page]),
                 'auditLogCount' => $events['total'],
-            ]
+            ],
         ]);
     }
 }

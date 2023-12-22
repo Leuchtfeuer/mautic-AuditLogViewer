@@ -6,6 +6,13 @@ namespace MauticPlugin\LeuchtfeuerAuditLogViewerBundle\Controller;
 
 trait LogTrait
 {
+    /**
+     * @param array<mixed> $filters
+     * @param int          $page
+     * @param int          $limit
+     *
+     * @return array<mixed>
+     */
     protected function getLogAuditLogs($filters, $page = 1, $limit = 25)
     {
         // Leuchtfeuer plugin administration log page
@@ -15,7 +22,7 @@ trait LogTrait
         $logRepository = $logModel->getRepository();
 
         $logCount = $logRepository->getAuditLogsCount($filters);
-        $logs = $logRepository->getAllAuditLogs($filters, $page, $limit);
+        $logs     = $logRepository->getAllAuditLogs($filters, $page, $limit);
 
         return [
             'events'    => $logs,
