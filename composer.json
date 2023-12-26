@@ -1,5 +1,5 @@
 {
-    "name": "leuchtfeuer/mautic-AuditLogViewer",
+    "name": "leuchtfeuer/mautic-auditlog-viewer",
     "description": "Introduce menu item which gives access to the Audit Log",
     "license": "GPL-3.0",
     "authors": [
@@ -20,6 +20,7 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "mautic/core-lib": "^5.0"
+        "mautic/core-lib": "^5.0",
+        "php": ">=8.0"
     }
 }
