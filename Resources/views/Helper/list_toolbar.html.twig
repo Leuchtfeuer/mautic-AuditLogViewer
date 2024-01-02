@@ -2,7 +2,7 @@
     <div class="box-layout">
         <div class="col-xs-6 col-lg-8 va-m form-inline">
             {% if searchValue is defined %}
-                {{- include('@LeuchtfeuerLog/Helper/search.html.twig', {
+                {{- include('@LeuchtfeuerAuditLogViewer/Helper/search.html.twig', {
                 searchId: searchId|default(null),
                 searchValue: searchValue,
                 action: action|default(''),
