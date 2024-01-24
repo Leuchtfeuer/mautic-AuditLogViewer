@@ -2,6 +2,10 @@
 
 Introduce menu item which gives access to the Audit Log
 
+## Compatibility
+- Mautic 5.0
+- PHP 8.0
+
 ## Install
 1.  Install bundle into LeuchtfeuerAuditLogViewerBundle directory in plugins/ directory or via composer
 2. Enable plugin
