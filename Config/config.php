@@ -3,7 +3,7 @@
 return [
     'name'          => 'Audit Log Viewer by Leuchtfeuer',
     'description'   => 'Introduce menu item which gives access to the Audit Log',
-    'version'       => '2.0',
+    'version'       => '5.0.0',
     'author'        => 'Leuchtfeuer Digital Marketing GmbH',
 
     'routes'        => [
