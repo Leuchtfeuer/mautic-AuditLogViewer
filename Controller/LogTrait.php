@@ -15,14 +15,15 @@ trait LogTrait
      */
     protected function getLogAuditLogs($filters, $page = 1, $limit = 25)
     {
+        $page  = (int) $page;
+        $limit = (int) $limit;
+
         // Leuchtfeuer plugin administration log page
         /** @var \MauticPlugin\LeuchtfeuerAuditLogViewerBundle\Model\LogModel $logModel */
         $logModel = $this->getModel('log.auditlog');
-        /** @var \MauticPlugin\LeuchtfeuerAuditLogViewerBundle\Entity\LogRepository $logRepository */
-        $logRepository = $logModel->getRepository();
 
-        $logCount = $logRepository->getAuditLogsCount($filters);
-        $logs     = $logRepository->getAllAuditLogs($filters, $page, $limit);
+        $logCount = $logModel->getAuditLogsCount($filters);
+        $logs     = $logModel->getAllAuditLogs($filters, $page, $limit);
 
         return [
             'events'    => $logs,

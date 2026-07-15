@@ -18,8 +18,7 @@ return static function (ContainerConfigurator $configurator) {
     $services->load('MauticPlugin\\LeuchtfeuerAuditLogViewerBundle\\', '../')
         ->exclude('../{'.implode(',', array_merge(MauticCoreExtension::DEFAULT_EXCLUDES, $excludes)).'}');
 
-    $services->load('MauticPlugin\\LeuchtfeuerAuditLogViewerBundle\\Entity\\', '../Entity/*Repository.php');
     $services->load('MauticPlugin\\LeuchtfeuerAuditLogViewerBundle\\Controller\\', '../Controller/*');
 
-    $services->alias('mautic.log.model.auditlog', \MauticPlugin\LeuchtfeuerAuditLogViewerBundle\Model\LogModel::class);
+    $services->alias('mautic.log.model.auditlog', MauticPlugin\LeuchtfeuerAuditLogViewerBundle\Model\LogModel::class);
 };
