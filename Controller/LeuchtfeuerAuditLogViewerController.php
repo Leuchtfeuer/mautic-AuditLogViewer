@@ -17,6 +17,8 @@ class LeuchtfeuerAuditLogViewerController extends AbstractFormController
      */
     public function indexAction(Request $request, $page = 1)
     {
+        $page = (int) $page;
+
         $filterForm = $this->createForm(LogFilterType::class);
         $filterForm->handleRequest($request);
 
